@@ -122,11 +122,15 @@ export const mockLogin = (username, password) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const user = mockUsers.find(u => 
-        (u.username === username || u.email === username) && 
-        (username === "2004" && password === "14" || username !== "2004")
+        u.username === username || u.email === username
       );
       
-      if (user && (user.id === "2004" ? password === "14" : true)) {
+      if (user) {
+        // Admin requires correct password, regular users accept any password
+        if (user.id === "2004" && password !== "14") {
+          reject(new Error("Invalid credentials"));
+          return;
+        }
         resolve(user);
       } else {
         reject(new Error("Invalid credentials"));
