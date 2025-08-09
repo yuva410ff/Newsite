@@ -52,8 +52,9 @@ const Dashboard = () => {
             <div className="flex items-center space-x-2">
               <User className="h-4 w-4" />
               <span className="text-sm">{user?.username}</span>
-              <Button variant="ghost" size="sm" onClick={logout}>
+              <Button variant="ghost" size="sm" onClick={logout} className="hover:bg-gray-700">
                 <LogOut className="h-4 w-4" />
+                <span className="ml-1">Logout</span>
               </Button>
             </div>
           </div>
